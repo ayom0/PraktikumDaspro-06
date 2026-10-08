@@ -20,7 +20,7 @@ public class StudiKasus206 {
         // Konversi jenis kegiatan ke huruf kapital agar case-insensitive
         jenisKegiatan = jenisKegiatan.toUpperCase();
 
-        // Logika Cabang Lomba (BELMAWA, BAKORMA, MANDIRI)
+        // Logika Pemilihan Bersarang (Nested IF)
         if (jenisKegiatan.equals("BELMAWA") || jenisKegiatan.equals("BAKORMA") || jenisKegiatan.equals("MANDIRI")) {
             if (peringkatJuara >= 1 && peringkatJuara <= 3) {
                 if (jumlahDokumen == 4) {
@@ -32,6 +32,21 @@ public class StudiKasus206 {
             } else {
                 System.out.println("Status: Tidak memperoleh dana penghargaan (hanya untuk Juara 1/2/3).");
             }
+        } else if (jenisKegiatan.equals("PKM")) {
+            if (statusPkm == 1) {
+                if (jumlahDokumen == 4) {
+                    System.out.println("Status: Berhak memperoleh dana penghargaan (PKM lolos pendanaan).");
+                } else {
+                    int kurangDokumen = 4 - jumlahDokumen;
+                    System.out.println("Status: Dokumen tidak lengkap (kurang " + kurangDokumen + " dokumen). Dana penghargaan tidak diberikan.");
+                }
+            } else {
+                System.out.println("Status: Tidak memperoleh dana penghargaan (PKM tidak lolos pendanaan).");
+            }
+        } else if (jenisKegiatan.equals("LAINNYA")) {
+            System.out.println("Status: Tidak memperoleh dana penghargaan (jenis kegiatan tidak termasuk ketentuan).");
+        } else {
+            System.out.println("Status: Jenis kegiatan tidak valid.");
         }
 
         scanner06.close();
